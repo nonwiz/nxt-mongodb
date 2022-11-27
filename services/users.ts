@@ -30,6 +30,9 @@ export const registerUser = async (user: UserModel) => {
 const createUser = async (user: UserModel) => {
     const users = await useDb(Collections.users);
     try {
+        if (user.email == null || user.email == "") {
+            return errorWrapper({}, "User email can't be null")
+        }
         user.email = user.email.toLowerCase();
         const data = await users.insertOne(user);
         return successWrapper("User created successfully", data);

@@ -1,6 +1,6 @@
 import type {NextApiRequest, NextApiResponse} from 'next'
 import {userPaths} from "@/interfaces";
-import {loginUser, registerUser} from '@/services/users';
+import {getUsers, loginUser, registerUser} from '@/services/users';
 import {pick} from "@/lib/custom";
 import {Resp} from '@/services/common';
 
@@ -15,13 +15,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     switch (req.method) {
 
         case "GET":
-            // ({ success, data, message } = await getUsers());
-            return Resp(res, 200, "Not authorized", {});
+            ({ success, data, message } = await getUsers());
+            return Resp(res, 200, "Not authorized", data);
 
         case "POST":
-            const { firstName, lastName } = req.body;
+            const { firstName, lastName, role } = req.body;
             ({ email, password } = req.body);
-            const result = await registerUser({ email, firstName, lastName, password });
+            const result = await registerUser({ email, firstName, lastName, password, role });
             ({ error, data, success, message } = result);
             return Resp(res, success ? 201 : 500, message, data);
 

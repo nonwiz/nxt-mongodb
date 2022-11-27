@@ -32,6 +32,7 @@ export default function RegisterPage() {
                 <input type="text" name="firstName" placeholder="firstname" />
                 <input type="text" name="lastName" placeholder="lastName" />
                 <input type="password" name="password" placeholder="password" />
+                <input type={"text"} name={"role"} placeholder={"role"} />
                 <br />
                 <button>Submit</button>
             </form>

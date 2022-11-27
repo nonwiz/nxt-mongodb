@@ -10,9 +10,9 @@ NextAuth + MongoDB + Credential Sign in + Tailwind Starter template
 
 ```jsx
   // when true, check for logged in
-  <Layout useAuth={boolean}>
+  <Auth useAuth={boolean} role={""}>
     <> Your component here </>
-  </Layout>
+  </Auth>
 ```
 
 ### Pages Route

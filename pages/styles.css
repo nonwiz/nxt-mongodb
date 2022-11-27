@@ -34,3 +34,7 @@ iframe {
   border-radius: 0.5rem;
   filter: invert(1);
 }
+
+button {
+  @apply px-4 py-1 my-1 border-2 border;
+}
