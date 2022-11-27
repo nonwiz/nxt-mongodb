@@ -1,5 +1,26 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/interfaces": [
+        "interfaces/index.ts"
+      ],
+      "@/mongodb": [
+        "lib/mongodb.ts"
+      ],
+      "@/db": [
+        "lib/db.ts"
+      ],
+      "@/lib/*": [
+        "lib/*"
+      ],
+      "@/services/*": [
+        "services/*"
+      ],
+      "@/components/*": [
+        "components/*"
+      ],
+    },
     "target": "es5",
     "lib": [
       "dom",
