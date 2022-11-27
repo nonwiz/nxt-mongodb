@@ -3,7 +3,7 @@ import {useRouter} from "next/router";
 import {ReactNode} from "react";
 
 // @ts-ignore
-export default function Auth({ children, useAuth = true, role = "member" }: { children: ReactNode, useAuth: Boolean}) {
+export default function Auth({ children, useAuth = true, role = "" }: { children: ReactNode, useAuth: Boolean}) {
     const { data, status } = useSession();
     const router = useRouter();
     if (status === "loading") {
