@@ -5,7 +5,7 @@ export default function MePage() {
   const { data } = useSession()
 
   return (
-    <Layout>
+    <Layout useAuth>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </Layout>
   )

@@ -9,6 +9,7 @@ import {useRouter} from "next/router";
 export default function Header() {
     const router = useRouter();
     const {data: session } = useSession();
+    // @ts-ignore
     return (
         <header>
 

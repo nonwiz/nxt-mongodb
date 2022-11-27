@@ -52,4 +52,5 @@ const authOptions: NextAuthOptions = {
   }
 }
 
+// @ts-ignore
 export default NextAuth(authOptions)
