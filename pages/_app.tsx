@@ -2,6 +2,7 @@ import { SessionProvider } from "next-auth/react"
 import "./styles.css"
 
 import type { AppProps } from "next/app"
+// @ts-ignore
 import type { Session } from "next-auth"
 
 // Use of the <SessionProvider> is mandatory to allow components that call

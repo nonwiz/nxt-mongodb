@@ -1,6 +1,6 @@
-import { User, UserModel } from "@/interfaces";
-import { Collections, useDb } from "@/db";
-import { errorWrapper, successWrapper } from "./common";
+import {UserModel} from "@/interfaces";
+import {Collections, useDb} from "@/db";
+import {errorWrapper, successWrapper} from "./common";
 
 const bcrypt = require('bcrypt');
 
@@ -17,7 +17,7 @@ export const loginUser = async (email: string, password: string) => {
 }
 
 export const registerUser = async (user: UserModel) => {
-    const { error, data } = await getUserByEmail(user.email);
+    const { data } = await getUserByEmail(user.email.toLowerCase());
     if (data == null) {
         const salt = await bcrypt.genSalt(10);
         // hashing password
@@ -30,6 +30,7 @@ export const registerUser = async (user: UserModel) => {
 const createUser = async (user: UserModel) => {
     const users = await useDb(Collections.users);
     try {
+        user.email = user.email.toLowerCase();
         const data = await users.insertOne(user);
         return successWrapper("User created successfully", data);
     } catch (error) {

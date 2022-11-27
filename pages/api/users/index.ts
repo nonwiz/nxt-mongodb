@@ -1,9 +1,8 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import type { User } from '@/interfaces';
-import { getUserByEmail, getUsers, loginUser, registerUser } from '@/services/users';
-import { userPaths } from "@/interfaces";
-import {  picks, pick } from "@/lib/custom";
-import { Resp } from '@/services/common';
+import type {NextApiRequest, NextApiResponse} from 'next'
+import {userPaths} from "@/interfaces";
+import {loginUser, registerUser} from '@/services/users';
+import {pick} from "@/lib/custom";
+import {Resp} from '@/services/common';
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -16,12 +15,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     switch (req.method) {
 
         case "GET":
-            return Resp(res, 500, "Not authorized", data);
+            // ({ success, data, message } = await getUsers());
+            return Resp(res, 200, "Not authorized", {});
 
         case "POST":
-            const { firstName, lastName, phoneNumber } = req.body;
+            const { firstName, lastName } = req.body;
             ({ email, password } = req.body);
-            const result = await registerUser({ email, firstName, lastName, phoneNumber, password });
+            const result = await registerUser({ email, firstName, lastName, password });
             ({ error, data, success, message } = result);
             return Resp(res, success ? 201 : 500, message, data);
 
@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             ({ email, password } = req.body);
             ({ success, error, message, data } = await loginUser(email, password));
             user = pick(data, userPaths);
-            return Resp(res, 200, message, user);
+            return Resp(res, 200, message, {user});
 
     }
 }

@@ -1,7 +1,9 @@
 import { useFetcher } from "@/lib/fetcher"
 import Layout from "@/components/layout"
+import {useRouter} from "next/router";
 
-export default function IndexPage() {
+export default function RegisterPage() {
+    const router = useRouter();
 
     const onSubmit = async (e: any) => {
         e.preventDefault();
@@ -12,7 +14,11 @@ export default function IndexPage() {
             data[i.name] = i.value;
         })
         await useFetcher(form.action, data, "POST").then(d => {
-            console.log({ d, data })
+            if (d.success) {
+                router.push('/auth/login');
+            } else {
+                alert(JSON.stringify(d, null, 2))
+            }
         })
 
     }
@@ -20,12 +26,13 @@ export default function IndexPage() {
     // @ts-ignore
     return (
         <Layout useAuth={false}>
-            <h1>Register</h1>
-            <form method="PATCH" action="/api/users" onSubmit={onSubmit}>
+            <h1 className={"text-4xl mb-2"}>Register</h1>
+            <form method="POST" action="/api/users" onSubmit={onSubmit}>
                 <input type="email" name="email" placeholder="email" />
                 <input type="text" name="firstName" placeholder="firstname" />
                 <input type="text" name="lastName" placeholder="lastName" />
                 <input type="password" name="password" placeholder="password" />
+                <br />
                 <button>Submit</button>
             </form>
         </Layout>

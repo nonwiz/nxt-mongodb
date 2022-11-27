@@ -1,6 +1,6 @@
-import NextAuth, { NextAuthOptions } from "next-auth"
+import NextAuth, {NextAuthOptions} from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import { randomBytes, randomUUID } from "crypto";
+import {randomBytes, randomUUID} from "crypto";
 
 const providers = [
   CredentialsProvider({
@@ -8,7 +8,8 @@ const providers = [
     credentials: {
       data: { label: "data", type: "hidden" }
     },
-    async authorize(credentials, req) {
+    async authorize(credentials, _req) {
+      console.log({credentials})
       return JSON.parse(credentials?.data || '{}');
     }
   })

@@ -13,8 +13,7 @@ export interface UserModel {
     email: string;
     firstName: string;
     lastName: string;
-    phoneNumber: string;
     password: string;
 }
 
-export const userPaths = ["email", "firstName", "lastName", "phoneNumber"];
+export const userPaths = ["email", "firstName", "lastName"];
