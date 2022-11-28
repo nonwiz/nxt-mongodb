@@ -26,8 +26,15 @@ const callbacks = {
     return {...token}
   },
 
-  async session(session: any) {
-    return session;
+  async session({session: object, token: object}) {
+    if (session.user) {
+      if (session.user.email === process.env.DEFAULT_ADMIN_EMAIL) {
+        session.user.role = 'admin';
+        token.role = 'admin';
+      }
+      session.user = { ...session.user, ...token }
+    }
+    return {session, token};
   }
 
 }
