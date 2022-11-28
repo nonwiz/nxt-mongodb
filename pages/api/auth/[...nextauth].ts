@@ -1,3 +1,4 @@
+// @ts-ignore
 import NextAuth, {NextAuthOptions} from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import {randomBytes, randomUUID} from "crypto";
@@ -15,6 +16,7 @@ const providers = [
   })
 ]
 
+// @ts-ignore
 const callbacks = {
   async jwt(token: any) {
     if (token.user) {
@@ -25,8 +27,8 @@ const callbacks = {
     }
     return {...token}
   },
-
-  async session({session: object, token: object}) {
+// @ts-ignore
+  async session({session, token}) {
     if (session.user) {
       if (session.user.email === process.env.DEFAULT_ADMIN_EMAIL) {
         session.user.role = 'admin';

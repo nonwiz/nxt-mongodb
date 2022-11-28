@@ -15,13 +15,15 @@ export default function Auth({ children, useAuth = true, role = "" }: { children
 
     if (role) {
         // @ts-ignore
-        const userRole: string = data.token.role as string;
+        const userRole: string = data.session.user.role as string;
         const message = {
             'user_role': userRole,
             'page_role': role
         }
+        console.log({message})
         if (userRole !== role) {
             alert(`You're not authorized for this view \n` + JSON.stringify(message, null, 4))
+            // Handle as you wish
         }
     }
     return (

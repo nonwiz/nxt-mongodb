@@ -8,8 +8,9 @@ import {useRouter} from "next/router";
 // rendering, and avoids any flash incorrect content on initial page load.
 export default function Header() {
     const router = useRouter();
-    const {data: session } = useSession();
+    const { data } = useSession();
     // @ts-ignore
+    const { session } = data || {};
     return (
         <header>
 
@@ -27,6 +28,9 @@ export default function Header() {
                     <li className={styles.navItem}>
                         <Link href="/api-example">API</Link>
                     </li>
+                     <li className={styles.navItem}>
+                        <Link href="/admin/dashboard">Admin-Dashboard</Link>
+                    </li>
                     <li className={styles.navItem}>
                         <Link href="/admin">Admin</Link>
                     </li>
@@ -40,7 +44,7 @@ export default function Header() {
                         <Link href="/auth/login">Login</Link>
                     </li>
                     <li>
-                        {session?.token &&
+                        {session?.user.email &&
                             <a
                                 className={styles.navItem}
                                 onClick={(e) => {
