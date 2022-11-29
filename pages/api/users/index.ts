@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             ({ email, password } = req.body);
             ({ success, error, message, data } = await loginUser(email, password));
             user = pick(data, userPaths);
-            return Resp(res, 200, message, {user});
+            return Resp(res, success ? 200 : 401, message, {user});
 
     }
 }

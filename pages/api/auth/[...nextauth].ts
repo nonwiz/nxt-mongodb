@@ -10,7 +10,6 @@ const providers = [
       data: { label: "data", type: "hidden" }
     },
     async authorize(credentials, _req) {
-      console.log({credentials})
       return JSON.parse(credentials?.data || '{}');
     }
   })

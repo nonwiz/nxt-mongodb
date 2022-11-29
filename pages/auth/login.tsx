@@ -12,7 +12,7 @@ const Login = () => {
         const email = emailEle.value;
         const password = passwordEle.value;
         await useFetcher(form.action, { email, password }, "PATCH").then(d => {
-            if (d.success) {
+            if (d.success && d.entities.user) {
                 signIn("credentials", { data: JSON.stringify(d.entities.user), callbackUrl: '/' });
             } else {
                 alert(d.message)

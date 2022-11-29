@@ -5,6 +5,7 @@
 
 export const checkNulls = (array: object) => {
     for (const key in array) {
+        // @ts-ignore
         if (array[key] == null || array[key] == "") {
             return true;
         }
