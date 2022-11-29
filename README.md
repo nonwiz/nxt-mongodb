@@ -10,6 +10,7 @@ NextAuth + MongoDB + Credential Sign in + Tailwind Starter template
 
 ```jsx
   // when true, check for logged in
+  // if role is defined, auth will check the current logged user's role
   <Auth useAuth={boolean} role={""}>
     <> Your component here </>
   </Auth>
@@ -49,5 +50,5 @@ Follow the [Deployment documentation](https://next-auth.js.org/deployment)
 
 ## License
 
-ISC
+MIT
 
